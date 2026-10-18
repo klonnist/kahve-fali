@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1c110b">
+<meta name="description" content="Fincanının fotoğrafını yükle, telvelerin sana ne söylediğini öğren.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Kahve Falı">
+<title>Kahve Falı</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stars" aria-hidden="true"></div>
+
+<main class="app">
+  <!-- 1. Giriş -->
+  <section id="screen-home" class="screen active">
+    <header class="brand">
+      <span class="eyebrow">☕ Telvelerin Dili</span>
+      <h1>Kahve Falı</h1>
+      <p class="lead">Kahveni iç, fincanını kapat, soğuyunca fotoğrafını çek. Gerisini telvelere bırak.</p>
+    </header>
+
+    <div class="cup-art" aria-hidden="true">
+      <svg viewBox="0 0 200 170" width="200" height="170">
+        <defs>
+          <linearGradient id="g-cup" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#f6ead6"/><stop offset="1" stop-color="#d9c3a0"/>
+          </linearGradient>
+          <radialGradient id="g-coffee" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#5a3420"/><stop offset="1" stop-color="#2a160c"/>
+          </radialGradient>
+        </defs>
+        <g class="steam" fill="none" stroke="#e8c98f" stroke-width="3" stroke-linecap="round" opacity=".7">
+          <path d="M80 50 q-10 -14 0 -26 q10 -12 0 -24"/>
+          <path d="M100 46 q-10 -14 0 -26 q10 -12 0 -24"/>
+          <path d="M120 50 q-10 -14 0 -26 q10 -12 0 -24"/>
+        </g>
+        <ellipse cx="100" cy="155" rx="80" ry="12" fill="#c9a86a" opacity=".35"/>
+        <ellipse cx="100" cy="152" rx="66" ry="9" fill="#b8955a"/>
+        <path d="M45 72 h110 l-10 62 q-4 16 -45 16 q-41 0 -45 -16z" fill="url(#g-cup)"/>
+        <path d="M155 84 q24 0 22 20 q-2 18 -28 20" fill="none" stroke="#d9c3a0" stroke-width="7"/>
+        <ellipse cx="100" cy="72" rx="55" ry="10" fill="url(#g-coffee)"/>
+        <path d="M58 100 q42 10 84 0" stroke="#c9a86a" stroke-width="2.5" fill="none"/>
+        <circle cx="70" cy="113" r="2.5" fill="#c9a86a"/><circle cx="100" cy="117" r="2.5" fill="#c9a86a"/><circle cx="130" cy="113" r="2.5" fill="#c9a86a"/>
+      </svg>
+    </div>
+
+    <div id="dropzone" class="dropzone">
+      <div class="btns">
+        <label class="btn primary">
+          <input id="in-camera" type="file" accept="image/*" capture="environment" hidden>
+          📷 Fotoğraf Çek
+        </label>
+        <label class="btn">
+          <input id="in-gallery" type="file" accept="image/*" hidden>
+          🖼️ Galeriden Seç
+        </label>
+      </div>
+      <p class="hint desk-only">ya da fotoğrafı buraya sürükle</p>
+    </div>
+
+    <p id="error" class="error" role="alert" hidden></p>
+
+    <details class="howto">
+      <summary>Nasıl fotoğraf çekmeliyim?</summary>
+      <ol>
+        <li>Kahveni iç, fincanı tabağa kapat ve niyet tut.</li>
+        <li>Soğuyunca fincanı aç, iyi ışıkta <b>içine yukarıdan</b> bak.</li>
+        <li>Fincanın içi ekranı doldursun, flaş gerekmez.</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- 2. Bakılıyor -->
+  <section id="screen-loading" class="screen" aria-live="polite">
+    <div class="orb">
+      <img id="preview" alt="Yüklenen fincan">
+      <div class="orb-ring"></div>
+    </div>
+    <p id="loading-text" class="loading-text">Fincan ısınıyor…</p>
+    <div class="dots"><span></span><span></span><span></span></div>
+  </section>
+
+  <!-- 3. Fal -->
+  <section id="screen-result" class="screen">
+    <div class="result-head">
+      <img id="thumb" class="thumb" alt="">
+      <div>
+        <span class="eyebrow">Falın hazır</span>
+        <h2 id="title">Fincanın konuşuyor</h2>
+      </div>
+    </div>
+    <div class="symbols" id="symbols"></div>
+    <div id="cards" class="cards"></div>
+    <div class="wish" id="wish"></div>
+    <div class="actions">
+      <button id="btn-share" class="btn primary" type="button">💌 Falımı Paylaş</button>
+      <button id="btn-again" class="btn" type="button">☕ Yeni Fal</button>
+    </div>
+    <p class="note">Bu fal eğlence amaçlıdır. Gerisi Allah'tan, hayır olsun. ✨</p>
+  </section>
+</main>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="readings.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "Kahve Falı",
+  "short_name": "Kahve Falı",
+  "description": "Fincanının fotoğrafını yükle, telvelerin sana ne söylediğini öğren.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1c110b",
+  "theme_color": "#1c110b",
+  "lang": "tr",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
