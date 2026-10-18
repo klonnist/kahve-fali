@@ -25,7 +25,7 @@
     <header class="brand">
       <span class="eyebrow">☕ Telvelerin Dili</span>
       <h1>Kahve Falı</h1>
-      <p class="lead">Kahveni iç, fincanını kapat, soğuyunca fotoğrafını çek. Gerisini telvelere bırak.</p>
+      <p class="lead">Kahveni iç, fincanını kapat. Soğuyunca fincanın iki yanını ve tabağını çek, gerisini telvelere bırak.</p>
     </header>
 
     <div class="cup-art" aria-hidden="true">
@@ -54,37 +54,29 @@
     </div>
 
     <div id="dropzone" class="dropzone">
-      <div class="btns">
-        <label class="btn primary">
-          <input id="in-camera" type="file" accept="image/*" capture="environment" hidden>
-          📷 Fotoğraf Çek
-        </label>
-        <label class="btn">
-          <input id="in-gallery" type="file" accept="image/*" hidden>
-          🖼️ Galeriden Seç
-        </label>
-      </div>
-      <p class="hint desk-only">ya da fotoğrafı buraya sürükle</p>
+      <div id="slots" class="slots"></div>
+      <p class="hint desk-only">Fotoğrafları kutuların üstüne sürükleyebilirsin</p>
     </div>
 
     <p id="error" class="error" role="alert" hidden></p>
+
+    <p id="counter" class="counter">0/3 fotoğraf yüklendi</p>
+    <button id="btn-start" class="btn primary big" type="button" disabled>🔮 Falıma Bak</button>
 
     <details class="howto">
       <summary>Nasıl fotoğraf çekmeliyim?</summary>
       <ol>
         <li>Kahveni iç, fincanı tabağa kapat ve niyet tut.</li>
-        <li>Soğuyunca fincanı aç, iyi ışıkta <b>içine yukarıdan</b> bak.</li>
-        <li>Fincanın içi ekranı doldursun, flaş gerekmez.</li>
+        <li>Soğuyunca fincanı aç. İyi ışıkta <b>içine bakacak şekilde</b> bir yanından çek (1. fincan).</li>
+        <li>Fincanı yarım tur çevir, öbür yanını çek (2. fincan).</li>
+        <li>Fincanın kapandığı <b>tabağı</b> yukarıdan çek. Flaş gerekmez.</li>
       </ol>
     </details>
   </section>
 
   <!-- 2. Bakılıyor -->
   <section id="screen-loading" class="screen" aria-live="polite">
-    <div class="orb">
-      <img id="preview" alt="Yüklenen fincan">
-      <div class="orb-ring"></div>
-    </div>
+    <div id="orbs" class="orbs"></div>
     <p id="loading-text" class="loading-text">Fincan ısınıyor…</p>
     <div class="dots"><span></span><span></span><span></span></div>
   </section>
@@ -92,13 +84,18 @@
   <!-- 3. Fal -->
   <section id="screen-result" class="screen">
     <div class="result-head">
-      <img id="thumb" class="thumb" alt="">
+      <div id="thumbs" class="thumbs"></div>
       <div>
         <span class="eyebrow">Falın hazır</span>
         <h2 id="title">Fincanın konuşuyor</h2>
       </div>
     </div>
     <div class="symbols" id="symbols"></div>
+    <div class="gallery-wrap" id="gallery-wrap">
+      <span class="eyebrow">Fincanda gördüklerim — şekillere dokun</span>
+      <div id="gallery" class="gallery"></div>
+      <div id="gallery-dots" class="gallery-dots"></div>
+    </div>
     <div id="cards" class="cards"></div>
     <div class="wish" id="wish"></div>
     <div class="actions">

@@ -191,3 +191,98 @@ h3 { font-size: 22px; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .card { opacity: 1; transform: none; }
 }
+
+/* ---------- 3 fotoğraf kutusu ---------- */
+.slots { display: grid; gap: 12px; }
+.slot {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px; border-radius: 16px;
+  background: rgba(0, 0, 0, .18); border: 1px solid var(--card-line);
+  transition: border-color .2s, background .2s;
+}
+.slot.done { border-color: var(--gold-2); background: rgba(232, 201, 143, .08); }
+.slot.drag { border-color: var(--gold); background: rgba(232, 201, 143, .16); }
+.slot-pic {
+  position: relative; flex: none; width: 76px; height: 76px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 30px;
+  background: rgba(232, 201, 143, .08); border: 1.5px dashed var(--card-line);
+}
+.slot.done .slot-pic { border-style: solid; border-color: var(--gold-2); }
+.slot-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.slot-pic .ok {
+  position: absolute; right: -4px; bottom: -4px; width: 26px; height: 26px; border-radius: 50%;
+  background: #f0d49c; color: #2a160c; font: 800 15px/26px 'Nunito', sans-serif; text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.4); display: none;
+}
+.slot.done .ok { display: block; }
+.slot-body { flex: 1; min-width: 0; }
+.slot-body b { display: block; color: var(--gold); font-size: 17px; }
+.slot-body small { display: block; color: var(--muted); font-size: 13px; line-height: 1.3; margin-bottom: 8px; }
+.slot-btns { display: flex; gap: 8px; }
+.mini {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px;
+  min-height: 44px; padding: 6px 8px; border-radius: 999px;
+  border: 1.5px solid var(--gold-2); color: var(--gold);
+  font: 700 14px 'Nunito', sans-serif; cursor: pointer; user-select: none; white-space: nowrap;
+}
+.mini:active { transform: scale(.96); }
+.mini.cam { background: linear-gradient(135deg, #f0d49c, #c9a86a); color: #2a160c; border-color: transparent; }
+
+.counter { text-align: center; color: var(--muted); font-size: 14px; margin: 16px 0 8px; }
+.btn.big { width: 100%; min-height: 58px; font-size: 19px; }
+.btn:disabled { opacity: .4; filter: grayscale(.6); cursor: not-allowed; box-shadow: none; }
+
+/* ---------- Bakılıyor: 3 küre ---------- */
+.orbs { display: flex; justify-content: center; align-items: center; gap: 18px; margin: 0 auto 30px; flex-wrap: wrap; }
+.orbs .orb { width: min(96px, 25vw); margin: 0; }
+.orbs .orb:nth-child(2) { width: min(124px, 32vw); }
+.orbs .orb-ring { inset: -8px; }
+.orbs .orb:nth-child(2) img { animation-direction: reverse, alternate; }
+
+/* ---------- Sonuç başlığı ---------- */
+.thumbs { display: flex; flex: none; }
+.thumbs img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold-2); background: var(--bg); }
+.thumbs img + img { margin-left: -18px; }
+
+/* ---------- İşaretli galeri ---------- */
+.chip { cursor: pointer; font-family: inherit; }
+.chip .num, .symlist .num {
+  display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%;
+  background: #f0d49c; color: #2a160c; font-size: 12px; font-weight: 800;
+}
+.gallery-wrap { margin: 0 0 16px; }
+.gallery {
+  display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; -webkit-overflow-scrolling: touch; border-radius: var(--radius);
+}
+.gallery::-webkit-scrollbar { display: none; }
+.shot { flex: 0 0 100%; scroll-snap-align: center; margin: 0; }
+.shot-frame { position: relative; width: 100%; aspect-ratio: 1; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--card-line); }
+.shot-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.shot figcaption { text-align: center; color: var(--muted); font-size: 13px; font-weight: 700; margin-top: 6px; }
+.mark {
+  position: absolute; transform: translate(-50%, -50%) scale(.3); opacity: 0;
+  border-radius: 50%; border: 3px solid #f0d49c;
+  box-shadow: 0 0 0 2px rgba(42, 22, 12, .55), 0 0 18px rgba(240, 212, 156, .85), inset 0 0 14px rgba(240, 212, 156, .45);
+  animation: markIn .7s cubic-bezier(.2, 1.4, .4, 1) forwards;
+  cursor: pointer; padding: 0; background: transparent;
+}
+.mark .tag {
+  position: absolute; left: 50%; top: 0; transform: translate(-50%, -115%);
+  display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
+  background: #f0d49c; color: #2a160c; font: 800 12px 'Nunito', sans-serif;
+  padding: 3px 8px; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,.45);
+}
+.mark.low .tag { top: 100%; transform: translate(-50%, 15%); }
+.mark.pulse { animation: markPulse .5s ease-in-out 4 alternate; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+@keyframes markIn { to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+@keyframes markPulse { to { transform: translate(-50%, -50%) scale(1.18); border-color: #fff; box-shadow: 0 0 0 2px rgba(42,22,12,.55), 0 0 34px #f0d49c; } }
+.gallery-dots { display: flex; justify-content: center; gap: 8px; margin-top: 8px; }
+.gallery-dots button { width: 32px; height: 32px; border: 0; background: transparent; padding: 12px; cursor: pointer; }
+.gallery-dots button::before { content: ''; display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--card-line); }
+.gallery-dots button.on::before { background: var(--gold); }
+
+.symlist { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.symlist li { display: grid; grid-template-columns: auto 1fr; gap: 10px; cursor: pointer; }
+.symlist .where { display: block; font-size: 12px; color: var(--muted); font-weight: 700; }
+.symlist strong { color: var(--gold); }

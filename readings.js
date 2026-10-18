@@ -123,6 +123,24 @@ window.FAL = {
     }
   },
 
+  // Tabak: ev, aile, gönül rahatlığı
+  saucer: {
+    icon: '🍽️', title: 'Tabak: Ev & Gönül',
+    low: [
+      'Tabağın tertemiz, neredeyse hiç telve dökülmemiş. Evinde huzur var; içini sıkan bir mesele yakında kendiliğinden çözülecek.',
+      'Tabak açık ve ferah. Ailende sevindirici bir gelişme var, evine güzel bir misafir gelecek.'
+    ],
+    mid: [
+      'Tabakta telveler bir halka gibi toplanmış; ev içinde bir toplanma, bir kutlama ya da bir aile buluşması görünüyor.',
+      'Tabağa dökülenler dengeli. Evle ilgili küçük bir masraf ya da düzenleme var ama sonunda gönlün rahat edecek.'
+    ],
+    high: [
+      'Tabağın dolu dolu; fincan içini tabağa dökmüş, yani dertlerin akıp gidiyor. Bu ağırlık yakında hafifleyecek.',
+      'Tabakta yoğun bir telve var; evinde biraz yorgunluk, biraz kalabalık var. Ama bereket de var, sofran hiç boş kalmayacak.'
+    ]
+  },
+  cupLabels: ['1. fincan', '2. fincan', 'tabak'],
+
   // Fincanın ağzı (yakın zaman) vs dibi (uzak zaman)
   timing: {
     near: 'Telveler fincanın ağzına yakın toplanmış; anlattıklarım çok yakında, belki günler içinde gerçekleşecek.',
@@ -151,6 +169,8 @@ window.FAL = {
     'Fincan ısınıyor…',
     'Telveler okunuyor…',
     'Semboller beliriyor…',
+    'Fincan çevriliyor…',
+    'Tabağa bakılıyor…',
     'Yollar, kuşlar, kalpler…',
     'Niyetine bakılıyor…'
   ]
